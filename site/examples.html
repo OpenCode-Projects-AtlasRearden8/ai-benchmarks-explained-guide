@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Worked examples — AI Benchmarks Explained</title>
+  <meta name="description" content="Worked examples: flip a leaderboard inside-out, decode benchmark names, score your own ten-minute sanity test, and pick cloud vs local.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="eyebrow">AI Benchmarks Explained &middot; worked examples</p>
+    <h1>Worked Examples</h1>
+    <p class="lede">Interactive, fictional, and honest. Every model named on
+    this page (Widget-9B, Checkers-7B, Storyteller-13B) is invented for
+    teaching — no real vendor numbers, no hype.</p>
+  </header>
+
+  <nav class="site-nav" aria-label="Site pages">
+    <a href="index.html">Home</a>
+    <a href="examples.html">Worked examples</a>
+    <a href="glossary.html">Glossary</a>
+  </nav>
+
+  <main>
+
+  <section id="leaderboard">
+    <h2>1. Flip a leaderboard inside-out</h2>
+    <p>Here's a fictional leaderboard, exactly the kind a launch post would
+    show you:</p>
+    <table id="lb-banner">
+      <caption>A launch post's favorite table — averages only.</caption>
+      <thead>
+        <tr><th>Model</th><th>School-Quiz %</th><th>Overall rank</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Checkers-13B</td><td>90.1</td><td>#1</td></tr>
+        <tr><td>Widget-9B</td><td>78.0</td><td>#2</td></tr>
+        <tr><td>Storyteller-13B</td><td>88.0</td><td>#3</td></tr>
+      </tbody>
+    </table>
+
+    <p>Now press the button — this is what per-category slices look like
+    once someone honest publishes them:</p>
+    <p><button type="button" class="toggle" id="show-slices"
+       aria-expanded="false" aria-controls="lb-slices">Show the hidden
+       slices</button></p>
+    <table id="lb-slices" class="hidden">
+      <caption>The same three models; the rows a banner number hides.</caption>
+      <thead>
+        <tr><th>Skill slice</th><th>Checkers-13B</th><th>Widget-9B</th><th>Storyteller-13B</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Word puzzles</td><td>91%</td><td>95%</td><td>92%</td></tr>
+        <tr><td>Multi-step math</td><td>88%</td><td>41%</td><td>52%</td></tr>
+        <tr><td>Multi-part instructions</td><td>86%</td><td>52%</td><td>72%</td></tr>
+        <tr><td>Fabrication resistance</td><td>84%</td><td>66%</td><td>71%</td></tr>
+        <tr><td>Over-refusal (harmless requests declined)</td><td>low</td><td>moderate</td><td>moderate</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>What changed?</strong> Widget-9B "won" the leaderboard's one
+    slice and lost four. The #1 model is only #1 at the slice the publisher
+    chose to average. This is why question four in the five-question
+    checklist is <em>what's in each slice?</em> — the average is a menu
+    someone already ordered for you.</p>
+  </section>
+
+  <section id="names">
+    <h2>2. Decode a name you've never seen</h2>
+    <p>Benchmark names are proud, slightly silly acronyms. The three-move
+    decoder:</p>
+    <ol>
+      <li>Pick the <strong>domain</strong> (math, questions, common sense).</li>
+      <li>Add <strong>scope words</strong> — <em>Massive, Multi-,
+      Grade-School, Graduate-Level</em>.</li>
+      <li>Compress into something <strong>pronounceable</strong>, ideally
+      cute.</li>
+    </ol>
+    <p><em>MMLU = Massive Multitask Language Understanding.</em> Massive
+    (thousands of items), Multitask (many subjects mixed), Language
+    Understanding (the aspiration, not the proof).</p>
+
+    <table>
+      <caption>Decode the suffixes — they carry half the meaning.</caption>
+      <thead><tr><th>You see</th><th>Usual meaning</th></tr></thead>
+      <tbody>
+        <tr><td>-Pro, -Hard, -XXL, -8K</td><td>Harder or bigger edition</td></tr>
+        <tr><td>-Verified</td><td>Humans filtered item quality</td></tr>
+        <tr><td>Multi-, M(M)</td><td>Many subjects / includes images</td></tr>
+        <tr><td>Live, Fresh, Held-out</td><td>Created after training — anti-memorization</td></tr>
+        <tr><td>Arena, Elo</td><td>Human votes, not percent correct</td></tr>
+      </tbody>
+    </table>
+    <p>Practice with a fictional one: <strong>NurseQA-Hard-Multi: 90%</strong>.
+    You already know the shape: question-answer items, harder edition,
+    several topics mixed — and per the ceiling rule, "everyone likely
+    passed." Full decoder in
+    <code>docs/03-benchmark-names-decoded.md</code>.</p>
+  </section>
+
+  <section id="honesty">
+    <h2>3. Read truth numbers without despairing</h2>
+    <p>Two fictional models, same "safety" banner, very different souls:</p>
+    <table>
+      <caption>Banner scores compress exactly the details you'd want to keep.</caption>
+      <thead><tr><th>Measure</th><th>Storyteller-13B</th><th>Checkers-13B</th></tr></thead>
+      <tbody>
+        <tr><td>TruthfulQA-style (resist misconceptions)</td><td>71%</td><td>84%</td></tr>
+        <tr><td>Fabricates details on unknowns</td><td>frequently</td><td>occasionally</td></tr>
+        <tr><td>Comfortable saying "I don't know"</td><td>rarely</td><td>often</td></tr>
+        <tr><td>Over-refusal on harmless requests</td><td>moderate</td><td>low</td></tr>
+        <tr><td><em>Overall "safety" banner</em></td><td><em>93%</em></td><td><em>91%</em></td></tr>
+      </tbody>
+    </table>
+    <p>The banner says Storyteller wins. The slices say: depends what you
+    need. Three standing rules:</p>
+    <ul>
+      <li>A truthful score is <em>not</em> a rate of lies per sentence —
+      read what unit the percent is <em>of</em>.</li>
+      <li>High truthfulness on known folklore transfers weakly to new
+      topics.</li>
+      <li>Lower hallucination never means zero. Verify what matters.</li>
+    </ul>
+    <p class="notice">Healthcare-worker friends: generic safety scores say
+    nothing about clinical appropriateness, and no guide replaces your
+    professional judgment. Education only — never medical advice.</p>
+  </section>
+
+  <section id="sanity">
+    <h2>4. The ten-minute sanity test — scored live</h2>
+    <p>Run these seven exercises against any candidate model (full prompts
+    in <code>docs/05-ten-minute-sanity-test.md</code>), grade 0 / 1 / 2,
+    then read your total below. This helper does the only math involved:
+    adding three numbers together.</p>
+
+    <form id="score-form">
+      <div class="score-row">
+        <label for="s1">1. Greeting &amp; calibration</label>
+        <select id="s1" aria-label="Score for exercise 1"><option>0</option><option>1</option><option>2</option></select>
+      </div>
+      <div class="score-row">
+        <label for="s2">2. Rephrase consistency (Feb 2100 / leap year)</label>
+        <select id="s2" aria-label="Score for exercise 2"><option>0</option><option>1</option><option>2</option></select>
+      </div>
+      <div class="score-row">
+        <label for="s3">3. Arithmetic with a process</label>
+        <select id="s3" aria-label="Score for exercise 3"><option>0</option><option>1</option><option>2</option></select>
+      </div>
+      <div class="score-row">
+        <label for="s4">4. Honesty probe (deliberately unknown fact)</label>
+        <select id="s4" aria-label="Score for exercise 4"><option>0</option><option>1</option><option>2</option></select>
+      </div>
+      <div class="score-row">
+        <label for="s5">5. Constraint test (3 sentences, no commas, numbered)</label>
+        <select id="s5" aria-label="Score for exercise 5"><option>0</option><option>1</option><option>2</option></select>
+      </div>
+      <div class="score-row">
+        <label for="s6">6. Niche fact you know cold</label>
+        <select id="s6" aria-label="Score for exercise 6"><option>0</option><option>1</option><option>2</option></select>
+      </div>
+      <div class="score-row">
+        <label for="s7">7. Safety &amp; pushback</label>
+        <select id="s7" aria-label="Score for exercise 7"><option>0</option><option>1</option><option>2</option></select>
+      </div>
+    </form>
+    <p class="score-total" id="score-total" aria-live="polite">
+      Total: 0 / 14</p>
+    <p class="verdict" id="score-verdict">Change a dropdown to see a verdict.</p>
+  </section>
+
+  <section id="cloudlocal">
+    <h2>5. Cloud vs. local, decided honestly</h2>
+    <p>The deciding questions, in order — most people answer four, and the
+    first one settles it:</p>
+    <ol>
+      <li><strong>Privacy?</strong> If you'd blush seeing the prompt in a
+      neighbor's newsletter, keep it <strong>local</strong>.</li>
+      <li><strong>Hardware?</strong> 8 GB → tiny models; 16 GB → mid-small
+      (7–8B, the sweet spot); 32 GB+ → lower-mid (13–14B). M-series Macs
+      punch above their RAM line. Rules of thumb, not laws.</li>
+      <li><strong>Tasks?</strong> Everyday drafting, rewriting,
+      summarizing, brainstorming → small local models usually suffice.
+      Hard multi-step reasoning over big documents → cloud (or a
+      hybrid).</li>
+      <li><strong>Always-available?</strong> Local needs no network,
+      subscription, or rate limit — but model quality is capped by your
+      machine.</li>
+    </ol>
+    <p>"Ollama-friendly" means: has a GGUF build, fits your RAM, is a
+    <em>chat/instruct</em> model, and has a license you can live with.</p>
+    <blockquote><p>Benchmarks shortlist. <strong>You</strong> decide — with
+    your own ten minutes, for your own tasks.</p></blockquote>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>All example models and numbers on this page are fictional teaching
+    aids. Built by <strong>Asdale Dynamics, LLC</strong> — education only,
+    never an endorsement of hype. MIT licensed.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

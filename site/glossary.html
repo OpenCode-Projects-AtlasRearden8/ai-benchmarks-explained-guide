@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glossary — AI Benchmarks Explained</title>
+  <meta name="description" content="A soft glossary: plain-English definitions of the terms AI leaderboards assume you already know.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="eyebrow">AI Benchmarks Explained &middot; soft glossary</p>
+    <h1>Plain-English Glossary</h1>
+    <p class="lede">Every term a leaderboard page assumes you already know,
+    defined in one or two calm sentences. Type to filter; every definition
+    stays a friend's explanation, not a textbook's.</p>
+  </header>
+
+  <nav class="site-nav" aria-label="Site pages">
+    <a href="index.html">Home</a>
+    <a href="examples.html">Worked examples</a>
+    <a href="glossary.html">Glossary</a>
+  </nav>
+
+  <main>
+    <section>
+      <label for="glossary-search">Filter terms</label>
+      <input id="glossary-search" type="search"
+             placeholder="Try: hallucination, ollama, elo, gguf&hellip;"
+             autocomplete="off">
+      <p id="no-results" class="empty-note hidden">No matching term — that's
+      fine; try fewer letters.</p>
+
+      <dl class="glossary" id="glossary-list">
+        <div id="arena">
+          <dt>Arena rating (Chatbot Arena, Elo-style)</dt>
+          <dd>A leaderboard built from real people voting between two
+          anonymous answers. Measures <em>preference</em>, not correctness
+          — polished, confident answers tend to win votes. Meaningful only
+          within the same pool of rated models.</dd>
+        </div>
+        <div id="benchmark">
+          <dt>Benchmark</dt>
+          <dd>A fixed set of tasks with known answers (or a judging
+          method), used to score a model. A measurement, not a promise: one
+          test, one moment, one set of assumptions.</dd>
+        </div>
+        <div id="saturation">
+          <dt>Benchmark saturation</dt>
+          <dd>When top models cluster near the top score and small
+          differences (91.2 vs. 91.8) are mostly noise. The polite reading:
+          "everyone passed."</dd>
+        </div>
+        <div id="chat-model">
+          <dt>Chat / instruct model</dt>
+          <dd>A model tuned to converse and follow instructions — what you
+          want for everyday use. A "base" model, by contrast, just
+          continues text and will happily babble.</dd>
+        </div>
+        <div id="contamination">
+          <dt>Contamination</dt>
+          <dd>Benchmark questions leaking into training data, so a model
+          can score from memory rather than skill. Like grading a test
+          someone already saw in study hall. Look for "held-out" or
+          "fresh" items.</dd>
+        </div>
+        <div id="cloud">
+          <dt>Cloud model</dt>
+          <dd>A model running on a provider's servers; you send prompts
+          over the network and pay a fee. Convenient and capable; data goes
+          somewhere else's computers.</dd>
+        </div>
+        <div id="context">
+          <dt>Context window</dt>
+          <dd>How much text a model can consider at once. Exceed it and the
+          model genuinely cannot "see" the extra material — no amount of
+          talent fixes that.</dd>
+        </div>
+        <div id="elo">
+          <dt>Elo rating</dt>
+          <dd>A relative score from pairwise comparisons, borrowed from
+          chess. Tells you who beat whom within one rated pool — not an
+          absolute measure of goodness.</dd>
+        </div>
+        <div id="gguf">
+          <dt>GGUF</dt>
+          <dd>The common file format for compressed local model files;
+          standard for Ollama and friends. Its size on disk is a good
+          preview of what your computer must carry.</dd>
+        </div>
+        <div id="hallucination">
+          <dt>Hallucination</dt>
+          <dd>A confident, fluent answer that is wrong — invented
+          citations, wrong dates, fake specifics. A natural side effect of
+          generating plausible text, not a random glitch. Plausible is not
+          the same as true.</dd>
+        </div>
+        <div id="heldout">
+          <dt>Held-out / fresh items</dt>
+          <dd>Benchmark questions kept out of training (or created after
+          training ended) to resist memorization. A good sign whenever a
+          leaderboard mentions them.</dd>
+        </div>
+        <div id="inference">
+          <dt>Inference</dt>
+          <dd>Running a trained model to get answers — what happens every
+          time you press send, as opposed to training, which happens on
+          the builder's side.</dd>
+        </div>
+        <div id="jailbreak">
+          <dt>Jailbreak</dt>
+          <dd>A prompt trick attempting to bypass a model's safety
+          behavior. Safety scores only cover the tricks known when the
+          test was built; new ones appear regularly.</dd>
+        </div>
+        <div id="llm">
+          <dt>LLM (large language model)</dt>
+          <dd>The model type behind chat assistants: trained on enormous
+          amounts of text to predict plausible continuations. Clever, and
+          sometimes confidently wrong in exactly the way that implies.</dd>
+        </div>
+        <div id="ollama">
+          <dt>Ollama</dt>
+          <dd>A popular free tool for downloading and running local models
+          on your own computer with simple commands. "Local-first" for
+          people who like clean tools.</dd>
+        </div>
+        <div id="local">
+          <dt>Local model</dt>
+          <dd>A model running on your own hardware. Private by default;
+          limited by your machine's RAM and speed — and, honestly, none of
+          your data ever leaves your desk.</dd>
+        </div>
+        <div id="mmlu">
+          <dt>MMLU (Massive Multitask Language Understanding)</dt>
+          <dd>Thousands of multiple-choice questions across school
+          subjects; the classic "general-knowledge survey" benchmark.
+          Famous, widely used, and old enough to stare at very high scores
+          suspiciously.</dd>
+        </div>
+        <div id="multimodal">
+          <dt>Multimodal</dt>
+          <dd>Handles more than one input type — text plus images, sometimes
+          audio. Acronyms with M(M) in the middle are usually the image
+          cousins of text tests.</dd>
+        </div>
+        <div id="overrefusal">
+          <dt>Over-refusal</dt>
+          <dd>Declining harmless requests out of caution. High "refusal
+          rate" is not automatically a virtue: a model that refuses
+          everything is safe and useless at the same time.</dd>
+        </div>
+        <div id="parameters">
+          <dt>Parameters (B = billion)</dt>
+          <dd>Roughly, the model's size. More parameters means more
+          capability headroom <em>and</em> more RAM required; smaller isn't
+          worse so much as different.</dd>
+        </div>
+        <div id="slices">
+          <dt>Per-category (per-slice) scores</dt>
+          <dd>The sub-scores behind an overall average. An overall 78%
+          can hide a 95% and a 41% — read the slices whenever they're
+          published.</dd>
+        </div>
+        <div id="prompt">
+          <dt>Prompt</dt>
+          <dd>The text you send the model. Its phrasing measurably changes
+          scores, which is why identical benchmarks run by different teams
+          produce different numbers.</dd>
+        </div>
+        <div id="quantization">
+          <dt>Quantization</dt>
+          <dd>Compressing a model's internal numbers so it fits consumer
+          hardware, trading a little quality for a lot of feasibility.
+          The reason a 13B-class model can live on a 16 GB laptop.</dd>
+        </div>
+        <div id="ram">
+          <dt>RAM</dt>
+          <dd>Your computer's working memory — the main gatekeeper for
+          local models. Rough ladder: 8 GB → tiny models; 16 GB → mid-small
+          (7–8B); 32 GB+ → lower-mid (13–14B). Rules of thumb, not laws.</dd>
+        </div>
+        <div id="refusal">
+          <dt>Refusal rate</dt>
+          <dd>How often a model declines requests. Always read it
+          per-category: declining harmful prompts is good; declining
+          harmless ones is a bug.</dd>
+        </div>
+        <div id="safety">
+          <dt>Safety benchmark</dt>
+          <dd>A test of how a model responds to adversarial prompts (bias
+          probes, toxicity, harmful requests). A snapshot against known
+          attacks — not a seal of approval.</dd>
+        </div>
+        <div id="sota">
+          <dt>SOTA (state of the art)</dt>
+          <dd>"Best publicly known score right now" — a title that quietly
+          expires every few weeks. Great for headlines, useless as a label
+          on a printed page.</dd>
+        </div>
+        <div id="truthfulqa">
+          <dt>TruthfulQA-style benchmark</dt>
+          <dd>Tests whether a model resists common misconceptions ("we use
+          10% of our brains…") instead of echoing them. Measures resistance
+          to folklore, not total factual accuracy.</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Soft glossary maintained by <strong>Asdale Dynamics, LLC</strong> —
+    education only, never medical/legal/financial advice. MIT licensed.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
