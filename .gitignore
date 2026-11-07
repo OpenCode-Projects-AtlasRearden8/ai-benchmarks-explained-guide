@@ -1,4 +1,9 @@
-__pycache__/
 *.pyc
 .DS_Store
+.env
+.env.*
+.venv/
 Thumbs.db
+__pycache__/
+dist/*.tmp
+node_modules/
